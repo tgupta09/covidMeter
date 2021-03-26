@@ -1,9 +1,6 @@
 import { DataServiceService } from './../data-service.service';
 import { Component, ViewChild, OnInit } from '@angular/core';
-// import { MatPaginator } from '@angular/material/paginator';
-// import { MatSort } from '@angular/material/sort';
-// import { merge, Observable, of as observableOf } from 'rxjs';
-// import { catchError, map, startWith, switchMap } from 'rxjs/operators';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-dashborad',
@@ -15,20 +12,9 @@ export class DashboradComponent implements OnInit {
   constructor(private dataServiceObj: DataServiceService) { }
 
   dataObjJSON: CovidData[] = [];
-  // dataDump2 = [
-  //   { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  //   { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  //   { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  //   { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  //   { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  //   { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  //   { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  //   { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  //   { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  //   { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-  // ];
   dataCardJSON = {};
   displayedColumns: string[] = ["country", "confirmed", "active", "recovered", "deaths"];
+  dataSource: MatTableDataSource<CovidData> = new MatTableDataSource(this.dataObjJSON);
 
   loadData(data) {
     let dataJSON = data["data"];
@@ -45,7 +31,8 @@ export class DashboradComponent implements OnInit {
       };
       this.dataObjJSON.push(dataObj);
     }
-    console.log(this.dataObjJSON);
+
+    this.dataSource = new MatTableDataSource(this.dataObjJSON);
   }
 
   loadCardData(data) {
@@ -61,7 +48,6 @@ export class DashboradComponent implements OnInit {
   ngOnInit(): void {
     this.dataServiceObj.getDataByCountry().subscribe((data) => this.loadData(data));
     this.dataServiceObj.getDataByTimeline().subscribe((data) => this.loadCardData(data));
-    console.log("NgInitArr", this.dataObjJSON);
   }
 }
 

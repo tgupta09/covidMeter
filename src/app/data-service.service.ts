@@ -10,7 +10,7 @@ export class DataServiceService {
 
   private URL = "https://corona-api.com/";
 
-  getDataByCountry(countryCode = null) {
+  getDataByCountry(countryCode?: string) {
     let url;
     if (countryCode != null) {
       url = this.URL + "countries/" + countryCode;

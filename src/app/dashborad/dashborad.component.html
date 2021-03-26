@@ -48,13 +48,17 @@
         </tbody>
       </table> -->
 
-      <table mat-table [dataSource]="dataObjJSON" class="mat-elevation-z8">
+
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
         <!-- Country Column -->
         <ng-container matColumnDef="country">
           <th mat-header-cell *matHeaderCellDef>Country</th>
           <td mat-cell *matCellDef="let element"><a
-              routerLink="/countrydata/{{element.countrycode}}">{{element.country}}</a></td>
+              routerLink="/countrydata/{{element.countrycode}}">{{element.country}}
+            </a>
+          </td>
+
         </ng-container>
 
         <!-- Confirmed Column -->
