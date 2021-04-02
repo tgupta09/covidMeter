@@ -56,6 +56,7 @@ import { CountryDataComponent } from './country-data/country-data.component';
 import { ChartsModule } from 'ng2-charts';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { CovidStatesComponent } from './covid-states/covid-states.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { environment } from '../environments/environment';
     DashHeaderComponent,
     DashboradComponent,
     CountryDataComponent,
+    CovidStatesComponent,
   ],
   imports: [
     BrowserModule,
